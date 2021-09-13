@@ -3,9 +3,7 @@ services:
     app:
         build:
             context: .
-            dockerfile: workers/Dockerfile
-        volumes:
-            - ./workers:/usr/src/workers
+            dockerfile: Dockerfile
         restart: "no"
         environment:
             service_mode : prod
@@ -24,14 +22,13 @@ services:
         image: workers
         build:
             context: .
-            dockerfile: workers/Dockerfile
-        command: bash -c "supervisord -c /usr/src/workers/supervisord.conf -n"
-        volumes:
-            - ./workers:/usr/src/workers
+            dockerfile: Dockerfile
+        command: bash -c "supervisord -c /app/supervisord.conf -n"
         links:
             - redis
         depends_on:
             - redis
+
     rq-dashboard:
         image: rq-dashboard
         build:

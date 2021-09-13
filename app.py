@@ -23,7 +23,7 @@ if __name__ == "__main__":
         try:
             main()
             i = i+1
-            if i == 1000:
+            if i == 5000:
                 break
         except Exception as e:
             print(e)
